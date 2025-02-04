@@ -23,7 +23,7 @@ const encrypt_plaintext = (req, res) => {
         encrypted_text += plaintext[i];
       }
     }
-    console.log(encrypted_text);
+    // console.log(encrypted_text);
     return res.status(200).json({
       status: 200,
       message: "Plaintext encrypted successfully.",
