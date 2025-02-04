@@ -38,13 +38,14 @@ const vigenereCipher = (req) => {
   const type = req.body.type;
   let text = "";
   text = type === "encrypt" ? plain_text : cipher_text;
+  console.log(text)
   console.log(text.toUpperCase().replace(/[^A-Z]/g).trim())
   text = text.toUpperCase().replace(/[^A-Z]/g, ' ').trim().split(" ");
   key = key.toUpperCase().replace(/[^A-Z]/g, "");
   let result = [];
   let keyIndex = 0;
   let keyLength = key.length;
-
+console.log(text, key)
   for(let idx = 0; idx < text.length; idx++) {
     let txt = '';
     for (let i = 0; i < text[idx].length; i++) {
@@ -59,8 +60,10 @@ const vigenereCipher = (req) => {
         txt += String.fromCharCode(newCharCode + 65);
         keyIndex++;
     }
+    console.log(txt)
     result.push(txt);
   }
+  console.log(result)
   return result.join(" ");
 };
 
