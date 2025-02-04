@@ -7,7 +7,7 @@ const encrypt_text = async (req, res) => {
       status: 200,
       message: "Encrypted Successfully.",
       plain_text: req.body.plain_text,
-      encrypted_text,
+      cipher_text: encrypted_text,
     });
   } catch (error) {
     console.log(error)
@@ -23,7 +23,7 @@ const decrypt_cipher_text = (req, res) => {
       status: 200,
       message: "Decrypted Successfully.",
       cipher_text: req.body.cipher_text,
-      decrypted_text,
+      plain_text: decrypted_text,
     });
   } catch (error) {
     console.log(error)

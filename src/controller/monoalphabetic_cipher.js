@@ -37,7 +37,7 @@ const encrypt_plaintext = (req, res, next) => {
         status: 200,
         message: "Plaintext encrypted successfully.",
         plain_text: plaintext,
-        encrypted_text: encrypted_text,
+        cipher_text: encrypted_text,
       });
   } catch (error) {
     return res.status(500).json({ error: error });
@@ -89,7 +89,7 @@ const decrypt_cipher_text = (req, res, next) => {
             status: 200,
             message: "Cipher text decrypted successfully.",
             cipher_text,
-            decrypted_text,
+            plain_text: decrypted_text,
           });
       } catch (error) {
         return res.status(500).json({ error: error });
