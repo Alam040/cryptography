@@ -2,6 +2,17 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 const  cipher = require('./router/cipher.router');
+const cors = require('cors');
+
+
+
+// Enable CORS
+ app.use(cors());
+
+//  // Connect to MongoDB
+//  const mongoose = require('mongoose');
+//  mongoose.connect('mongodb://localhost:27017/cipherDB', { useNewUrlParser: true, useUnifiedTopology: true })
+//  .then(() => console.log('MongoDB connected...'))
 
 // Middleware to parse application/x-www-form-urlencoded request bodies
  app.use(bodyParser.urlencoded({ extended: false }));
