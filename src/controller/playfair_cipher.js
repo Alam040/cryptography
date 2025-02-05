@@ -5,8 +5,8 @@ const encrypt_text = (req, res) => {
     validation.validation(req, res);
     
     
-    const key = req.body.key.toUpperCase();
-    const plain_text = req.body.plain_text.toUpperCase();
+    const key = req.body.key?.toUpperCase();
+    const plain_text = req.body.plain_text?.toUpperCase();
     let matrix = getGenerateMatrix(key);
     let encrypted_text = "";
 
@@ -45,8 +45,8 @@ const decrypt_cipher_text = (req, res) => {
     validation.validation(req, res)
     
     
-    const key = req.body.key.toUpperCase();
-    const cipher_text = req.body.cipher_text.toUpperCase();
+    const key = req.body.key?.toUpperCase();
+    const cipher_text = req.body.cipher_text?.toUpperCase();
     let matrix = getGenerateMatrix(key);
     let decrypted_text = "";
 
@@ -94,7 +94,7 @@ const decrypt_cipher_text = (req, res) => {
       plain_text: decrypted_text,
     });
   } catch (error) {
-    
+    console.log(error)
     return res.status(500).json({ error: error });
   }
 };
