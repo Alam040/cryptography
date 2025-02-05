@@ -35,6 +35,7 @@ const encrypt_text = (req, res) => {
       cipher_text: encrypted_text,
     });
   } catch (error) {
+    console.log(error);
     return res.status(500).json({ error: error });
   }
 };
