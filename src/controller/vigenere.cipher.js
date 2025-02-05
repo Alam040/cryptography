@@ -10,7 +10,6 @@ const encrypt_text = async (req, res) => {
       cipher_text: encrypted_text,
     });
   } catch (error) {
-    console.log(error)
     return res.status(500).json({ error: error });
   }
 };
@@ -26,7 +25,6 @@ const decrypt_cipher_text = (req, res) => {
       plain_text: decrypted_text,
     });
   } catch (error) {
-    console.log(error)
     return res.status(500).json({ error: error });
   }
 };
@@ -38,26 +36,30 @@ const vigenereCipher = (req) => {
   const type = req.body.type;
   let text = "";
   text = type === "encrypt" ? plain_text : cipher_text;
-  console.log(text.toUpperCase().replace(/[^A-Z]/g).trim())
-  text = text.toUpperCase().replace(/[^A-Z]/g, ' ').trim().split(" ");
+
+  text = text
+    .toUpperCase()
+    .replace(/[^A-Z]/g, " ")
+    .trim()
+    .split(" ");
   key = key.toUpperCase().replace(/[^A-Z]/g, "");
   let result = [];
   let keyIndex = 0;
   let keyLength = key.length;
 
-  for(let idx = 0; idx < text.length; idx++) {
-    let txt = '';
+  for (let idx = 0; idx < text.length; idx++) {
+    let txt = "";
     for (let i = 0; i < text[idx].length; i++) {
-        let currentChar = text[idx].charCodeAt(i) - 65;
-        let keyChar = key.charCodeAt(keyIndex % keyLength) - 65;
-    
-        let newCharCode =
-          type === "encrypt"
-            ? (currentChar + keyChar) % 26
-            : (currentChar - keyChar + 26) % 26;
-        
-        txt += String.fromCharCode(newCharCode + 65);
-        keyIndex++;
+      let currentChar = text[idx].charCodeAt(i) - 65;
+      let keyChar = key.charCodeAt(keyIndex % keyLength) - 65;
+
+      let newCharCode =
+        type === "encrypt"
+          ? (currentChar + keyChar) % 26
+          : (currentChar - keyChar + 26) % 26;
+
+      txt += String.fromCharCode(newCharCode + 65);
+      keyIndex++;
     }
     result.push(txt);
   }

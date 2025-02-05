@@ -51,6 +51,7 @@ const decrypt_cipher_text = (req, res) => {
     let decrypted_text = "";
 
     let formattedText = formatText(cipher_text);
+    
 
     for (let i = 0; i < formattedText.length; i++) {
       let [r1, c1] = getPosition(formattedText[i][0], matrix);
@@ -69,9 +70,10 @@ const decrypt_cipher_text = (req, res) => {
 
     formattedText = formatText(decrypted_text);
     decrypted_text = '';
+    
 
     for(var i = 0; i < formattedText.length;) {
-        if(i < formattedText.length-1 && formattedText[i][0] === formattedText[i+1][0]){
+        if(i < formattedText.length-1 && formattedText[i][0] === formattedText[i+1][0] && formattedText[i][1] === "X"){
             decrypted_text += formattedText[i][0] + formattedText[i+1][0];
             i += 2;
         }else{
@@ -79,10 +81,11 @@ const decrypt_cipher_text = (req, res) => {
             i++;
         }
     }
-
+    
     if(formattedText[formattedText.length -1][1] === 'Z'){
       decrypted_text = decrypted_text.substring(0, decrypted_text.length - 1);
     }
+    
 
     return res.status(200).json({
       status: 200,
@@ -91,7 +94,7 @@ const decrypt_cipher_text = (req, res) => {
       plain_text: decrypted_text,
     });
   } catch (error) {
-    console.log(error);
+    
     return res.status(500).json({ error: error });
   }
 };
