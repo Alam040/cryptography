@@ -12,10 +12,14 @@ const encrypt_text = (req, res) => {
 
     
     let formattedText = formatText(plain_text);
-
+    console.log(formattedText)
     for (let i = 0; i < formattedText.length; i++) {
+      console.log(formattedText[i])
+      console.log(formattedText[i][0])
+      console.log(formattedText[i][1])
       let [r1, c1] = getPosition(formattedText[i][0], matrix);
       let [r2, c2] = getPosition(formattedText[i][1], matrix);
+      console.log(r1, c1, r2, c2,)
 
       if (r1 === r2) {
         encrypted_text += matrix[r1][(c1 + 1) % 5];
@@ -147,6 +151,7 @@ const getPosition = (pair, matrix) => {
   for (let i = 0; i < 5; i++) {
     for (let j = 0; j < 5; j++) {
       if (pair === matrix[i][j]) {
+        console.log(i, j)
         return [i, j];
       }
     }

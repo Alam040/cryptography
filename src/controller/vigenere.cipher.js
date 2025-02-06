@@ -10,6 +10,7 @@ const encrypt_text = async (req, res) => {
       cipher_text: encrypted_text,
     });
   } catch (error) {
+    console.log(error)
     return res.status(500).json({ error: error });
   }
 };
@@ -25,6 +26,7 @@ const decrypt_cipher_text = (req, res) => {
       plain_text: decrypted_text,
     });
   } catch (error) {
+    console.log(error)
     return res.status(500).json({ error: error });
   }
 };
